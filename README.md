@@ -61,12 +61,18 @@ input-capped and documented). Both have a regression test. As always: the recomm
 
 ## Install — pick your supply-chain tolerance
 
-**A. From npm** (you depend on this one package, which itself depends on nothing):
+**A. From npm** — published with signed provenance, zero runtime deps:
 
 ```sh
 npm install ss-gitops-jsondb
 # `next` is an optional peer dep, only for the Next adapter
 ```
+
+> **Real talk: I'd skip this and vendor it (Option B).** Yes, it's on npm for convenience — but
+> even a zero-dependency package is still a supply-chain link you're choosing to trust: a future
+> release, a hijacked account, a typosquatted name one fat-finger away. This thing mints a
+> write-capable token and touches your filesystem — exactly the code you want to read in one sitting
+> and *own outright*, not pull blind from a registry. Cloning the files in is the move I'd make.
 
 **B. Vendor it (zero dependencies, including this one).** The whole library is native
 TypeScript — every import is from `node:*`. Copy `src/` into your project and import
