@@ -13,7 +13,10 @@ async function setup() {
     const base = await mkdtemp(path.join(tmpdir(), 'jsondb-'));
     const bare = path.join(base, 'remote.git');
     const work = path.join(base, 'content');
-    git(base, 'init', '--bare', 'remote.git');
+    // -b main on BOTH: a fresh runner has no init.defaultBranch, so without this the bare's
+    // HEAD points at 'master', the seed pushes to 'main', and `git clone` checks out an empty
+    // working tree — which silently made verify-clone reads return null in CI.
+    git(base, 'init', '-b', 'main', '--bare', 'remote.git');
     git(base, 'init', '-b', 'main', 'content');
     git(work, 'config', 'user.email', 'test@example.com');
     git(work, 'config', 'user.name', 'Test');
