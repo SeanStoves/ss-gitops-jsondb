@@ -1,0 +1,24 @@
+# Typecheck + tests on every PR into main. This is the gate branch protection points
+# at — red here, the PR can't merge. publish.yml runs the tests again on release;
+# belt and suspenders. Node 24 because the tests strip types to run the .ts files
+# directly, same as publish.yml.
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v4
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm run types
+      - run: npm test
