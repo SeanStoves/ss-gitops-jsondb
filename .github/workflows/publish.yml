@@ -1,9 +1,14 @@
-# Publish to npm when a GitHub Release is published.
+# Publish to npm when a GitHub Release is published — via OIDC Trusted Publishing.
+# No npm token anywhere: the workflow gets short-lived credentials at run time and npm
+# attaches signed provenance automatically. Nothing to leak.
 #
-# One-time setup: add an NPM_TOKEN repo secret (Settings -> Secrets and variables ->
-# Actions -> New repository secret) — an npm "Automation" token with publish rights.
+# One-time setup (run once, after `npm login` locally):
+#   npm trust github ss-gitops-jsondb --file publish.yml --repo SeanStoves/ss-gitops-jsondb
+# (or set it on npmjs.com: package Settings -> Trusted Publisher -> GitHub Actions ->
+#  org SeanStoves, repo ss-gitops-jsondb, workflow publish.yml).
+#
 # To release: bump "version" in package.json, commit, then cut a GitHub Release with a
-# matching tag (e.g. v0.1.0). This runs the tests and publishes with provenance.
+# matching tag (e.g. v0.1.0). Tests run as a gate, then it publishes.
 name: publish
 
 on:
@@ -12,7 +17,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write # lets npm attach signed build provenance to the package
+  id-token: write # OIDC: lets npm mint a short-lived credential + sign provenance
 
 jobs:
   publish:
@@ -23,8 +28,7 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@latest # trusted publishing needs npm >= 11.5.1
       - run: npm ci
       - run: npm test
-      - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --access public # OIDC trusted publishing — no token, provenance automatic
