@@ -1,0 +1,30 @@
+# Publish to npm when a GitHub Release is published.
+#
+# One-time setup: add an NPM_TOKEN repo secret (Settings -> Secrets and variables ->
+# Actions -> New repository secret) — an npm "Automation" token with publish rights.
+# To release: bump "version" in package.json, commit, then cut a GitHub Release with a
+# matching tag (e.g. v0.1.0). This runs the tests and publishes with provenance.
+name: publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write # lets npm attach signed build provenance to the package
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v4
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm test
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

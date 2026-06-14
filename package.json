@@ -1,0 +1,56 @@
+{
+    "name": "ss-gitops-jsondb",
+    "version": "0.1.0",
+    "description": "GitHub App content-sync toolkit: mint an installation token, verify webhook signatures, pull/push a content repo over git, and compute which paths to evict. Native Node, no runtime deps.",
+    "type": "module",
+    "license": "MIT",
+    "author": "Sean Stoves",
+    "repository": { "type": "git", "url": "git+https://github.com/SeanStoves/ss-gitops-jsondb.git" },
+    "bugs": { "url": "https://github.com/SeanStoves/ss-gitops-jsondb/issues" },
+    "homepage": "https://github.com/SeanStoves/ss-gitops-jsondb#readme",
+    "keywords": [
+        "github-app",
+        "webhook",
+        "gitops",
+        "content-sync",
+        "revalidate",
+        "installation-token",
+        "x-hub-signature-256"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./adapters/next": "./adapters/next/index.ts",
+        "./adapters/express": "./adapters/express/index.ts"
+    },
+    "files": [
+        "dist",
+        "src",
+        "adapters",
+        "README.md",
+        "LICENSE"
+    ],
+    "engines": {
+        "node": ">=20"
+    },
+    "scripts": {
+        "test": "node --test --experimental-strip-types \"tests/**/*.test.ts\"",
+        "build": "tsc -p tsconfig.build.json",
+        "types": "tsc --noEmit",
+        "prepublishOnly": "npm run build"
+    },
+    "peerDependencies": {
+        "next": ">=14"
+    },
+    "peerDependenciesMeta": {
+        "next": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^25.9.3",
+        "typescript": "^5.6.0"
+    }
+}
