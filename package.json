@@ -1,12 +1,17 @@
 {
     "name": "@seanstoves/ss-gitops-jsondb",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "GitHub App content-sync toolkit: mint an installation token, verify webhook signatures, pull/push a content repo over git, and compute which paths to evict. Native Node, no runtime deps.",
     "type": "module",
     "license": "MIT",
     "author": "Sean Stoves",
-    "repository": { "type": "git", "url": "git+https://github.com/SeanStoves/ss-gitops-jsondb.git" },
-    "bugs": { "url": "https://github.com/SeanStoves/ss-gitops-jsondb/issues" },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SeanStoves/ss-gitops-jsondb.git"
+    },
+    "bugs": {
+        "url": "https://github.com/SeanStoves/ss-gitops-jsondb/issues"
+    },
     "homepage": "https://github.com/SeanStoves/ss-gitops-jsondb#readme",
     "keywords": [
         "github-app",
