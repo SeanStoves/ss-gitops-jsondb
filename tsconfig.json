@@ -22,7 +22,7 @@
         "noEmit": true,
         "baseUrl": ".",
         "paths": {
-            "ss-gitops-jsondb": ["./src/index.ts"]
+            "@seanstoves/ss-gitops-jsondb": ["./src/index.ts"]
         }
     },
     "include": ["src/**/*.ts", "tests/**/*.ts"],

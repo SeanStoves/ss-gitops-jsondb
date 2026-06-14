@@ -3,7 +3,7 @@ import {
     type AppConfig,
     type GitConfig,
     type EvictionConfig,
-} from 'ss-gitops-jsondb';
+} from '@seanstoves/ss-gitops-jsondb';
 
 /*
  * Express adapter — EXAMPLE. Express gives you no raw body by default and JSON
@@ -11,7 +11,7 @@ import {
  * route ONLY so req.body is the exact bytes GitHub signed:
  *
  *   import express from 'express';
- *   import { githubWebhook } from 'ss-gitops-jsondb/adapters/express';
+ *   import { githubWebhook } from '@seanstoves/ss-gitops-jsondb/adapters/express';
  *
  *   const app = express();
  *   app.post(

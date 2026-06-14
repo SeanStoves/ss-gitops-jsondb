@@ -64,7 +64,7 @@ input-capped and documented). Both have a regression test. As always: the recomm
 **A. From npm** — published with signed provenance, zero runtime deps:
 
 ```sh
-npm install ss-gitops-jsondb
+npm install @seanstoves/ss-gitops-jsondb
 # `next` is an optional peer dep, only for the Next adapter
 ```
 
@@ -95,7 +95,7 @@ Reads are traversal- and symlink-proof (the on-disk tree is push-writable, so it
 hostile boundary). A write does `pull → write → commit → push` — durability is git's job.
 
 ```ts
-import { readJson, listJson, writeJson, removeJson } from 'ss-gitops-jsondb';
+import { readJson, listJson, writeJson, removeJson } from '@seanstoves/ss-gitops-jsondb';
 
 // READ — missing/out-of-root is null; malformed JSON throws (a corrupt record is a real problem)
 const home = await readJson<{ name: string }>(CONTENT_DIR, 'home');          // home.json
@@ -169,7 +169,7 @@ push on your branch → mint token → pull → diff the SHAs → return the pat
 
 ```ts
 import { revalidatePath } from 'next/cache';
-import { handleWebhook, type EvictionConfig } from 'ss-gitops-jsondb';
+import { handleWebhook, type EvictionConfig } from '@seanstoves/ss-gitops-jsondb';
 
 const eviction: EvictionConfig = {
     patterns: [{ pattern: /^blog\/(.+)\.md$/, evict: (slug) => [`/blog/${slug}`], also: ['/blog', '/'] }],
@@ -207,7 +207,7 @@ the signature won't match). Point the App's webhook at the route, push, and the 
 `writeJson`, `pull`, and `push` all take a token; get one with:
 
 ```ts
-import { installationToken } from 'ss-gitops-jsondb';
+import { installationToken } from '@seanstoves/ss-gitops-jsondb';
 
 const token = await installationToken({
     appId: process.env.GH_APP_ID!,

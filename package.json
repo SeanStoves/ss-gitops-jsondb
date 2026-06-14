@@ -1,5 +1,5 @@
 {
-    "name": "ss-gitops-jsondb",
+    "name": "@seanstoves/ss-gitops-jsondb",
     "version": "0.1.0",
     "description": "GitHub App content-sync toolkit: mint an installation token, verify webhook signatures, pull/push a content repo over git, and compute which paths to evict. Native Node, no runtime deps.",
     "type": "module",

@@ -4,7 +4,7 @@ import {
     type AppConfig,
     type GitConfig,
     type EvictionConfig,
-} from 'ss-gitops-jsondb';
+} from '@seanstoves/ss-gitops-jsondb';
 
 /*
  * Next adapter — EXAMPLE, copy it into your app and adjust. The only place a next/cache
