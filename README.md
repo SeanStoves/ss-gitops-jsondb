@@ -1,6 +1,6 @@
 # ss-gitops-jsondb
 
-[![npm](https://img.shields.io/npm/v/@seanstoves/ss-gitops-jsondb?logo=npm&color=cb3837)](https://www.npmjs.com/package/@seanstoves/ss-gitops-jsondb) [![CI](https://github.com/SeanStoves/ss-gitops-jsondb/actions/workflows/ci.yml/badge.svg)](https://github.com/SeanStoves/ss-gitops-jsondb/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@seanstoves/ss-gitops-jsondb?logo=npm&color=cb3837)](https://www.npmjs.com/package/@seanstoves/ss-gitops-jsondb) [![downloads](https://img.shields.io/npm/dm/@seanstoves/ss-gitops-jsondb)](https://www.npmjs.com/package/@seanstoves/ss-gitops-jsondb) [![CI](https://github.com/SeanStoves/ss-gitops-jsondb/actions/workflows/ci.yml/badge.svg)](https://github.com/SeanStoves/ss-gitops-jsondb/actions/workflows/ci.yml) [![publish](https://github.com/SeanStoves/ss-gitops-jsondb/actions/workflows/publish.yml/badge.svg)](https://github.com/SeanStoves/ss-gitops-jsondb/actions/workflows/publish.yml) [![forks](https://img.shields.io/github/forks/SeanStoves/ss-gitops-jsondb)](https://github.com/SeanStoves/ss-gitops-jsondb/network/members)
 
 > **Provenance.** I wrote this code for my own site ([seanstoves.com](https://seanstoves.com)).
 > [Claude Code](https://claude.com/claude-code) did the work of ripping it out of the app,
